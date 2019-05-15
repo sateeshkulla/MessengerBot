@@ -1,15 +1,9 @@
-# MessengerBot
+# Facebook MessengerBot using Spring Boot
 
-Steps
-
-1 . Add the Facebook Page access token in src/main/resources/application.properties
-        facebook_page_access_token=<PAGE_ACCESS_TOKEN>
+## Step: 1 
+  Start the app using **mvn spring-boot:run**, this will run the embedded **Tomcat Server on port 8080**. You can change to a different port in file **src/main/resources/application.properties. 
   
-2. Start the server using mvn spring-boot:run
-
-3. Configure the Facebook webhook, in the developer Apps https://developers.facebook.com/apps
-
-4. Send any message to the page, the bot will reply with the Quick Reply message.
+  Update the **facebook_page_access_token** value with **Page Access Token** after configuring the webhooks in Step 3 and restart the server.
 
 ## **Step: 2 Create Facebook developer account and Page for bot**
 
@@ -25,10 +19,14 @@ Visit the App Dashboard in the developer account https://developers.facebook.com
 
 Click on the Products (+) and then click on the Messenger Set Up Button.
 
+![alt text](https://github.com/sateeshkulla/MessengerBot/blob/master/docs/images/Add_product.png)
+
 
 In the Messenger settings page scroll down to Webhook Section, click on Subscribe to Events button to configure the webhook created in Step 1.
 
 Enter the Webhook URL and enter the **FACEBOOK_WEBHOOK_VERIFY_KEY** token value from the ENV variable.
+
+![alt text](https://github.com/sateeshkulla/MessengerBot/blob/master/docs/images/configure_webhook.png)
 
 Select **messages** and **messaging_postbacks** Click on Verify and Save button and webhooks will be added to Products. This will call the GET method of Webhook to verify the URL.
 
@@ -38,9 +36,15 @@ Go to the **Access Tokens** Section in the Messenger Settings, Select the Facebo
 
 Copy the **Page Access Token** and update the ENV variable FACEBOOK_PAGE_ACCESS_TOKEN
 
+![alt text](https://github.com/sateeshkulla/MessengerBot/blob/master/docs/images/page_access_token.png)
+
 Go to the **Webhook Section**, select the Page from the drop down and click on the Subscribe button
 
+![alt text](https://github.com/sateeshkulla/MessengerBot/blob/master/docs/images/subscribe_webhook.png)
+
 In **NLP Section** enable NLP for the page: NLP is used to identify email, city, postal code information
+
+![alt text](https://github.com/sateeshkulla/MessengerBot/blob/master/docs/images/enable_nlp.png)
 
 ## **Test the Bot**
 
@@ -51,4 +55,11 @@ Now when you send a message to the Bot, it will reply with a Welcome message and
 Whitelist the Truecar domain. Click Settings at the top of your Page Click Messenger Platform on the left
 Edit whitelisted domains for your page in the Whitelisted Domains section Add https://www.truecar.com/
 
+![alt text](https://github.com/sateeshkulla/MessengerBot/blob/master/docs/images/search_page.png)
+
+![alt text](https://github.com/sateeshkulla/MessengerBot/blob/master/docs/images/mesenger_message.jpg)
+
 After testing submit the App for the review, https://developers.facebook.com/docs/apps/managing-development-cycle/
+
+## References
+For a more in-depth explanation on how to build a Facebook bot, check out Facebook's own quickstart guide: https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start
